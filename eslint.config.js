@@ -33,6 +33,9 @@ export default [
     languageOptions: {
       ecmaVersion: 2020, // ECMAScript 2020を有効化
       sourceType: 'module', // ES6のモジュール構文をサポート
+      globals: {
+        module: 'writable', // moduleを定義してno-undefエラーを回避
+      },
     },
     rules: {
       // インポート文の後に必ず空行を入れるルール
