@@ -46,7 +46,7 @@ export default [
       // インデントはスペース2つに統一
       indent: ['error', 2],
       // セミコロンを常に使う
-      semi: ['error', 'always'],
+      // semi: ['error', 'always'],
       // 文字列にはシングルクォートを使用
       quotes: ['error', 'single'],
       // 未使用の変数には警告を表示
