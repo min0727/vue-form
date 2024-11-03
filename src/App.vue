@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue';
 
+import CustomInput from './components/CustomInput.vue';
+
 const textField = ref('');
 const textArea = ref('');
 const checkBox = ref(false);
@@ -31,6 +33,7 @@ const handleFileUpload = (event) => {
     imageUrl.value = '';
   }
 };
+const userInput = ref('');
 </script>
 
 <template>
@@ -115,7 +118,7 @@ const handleFileUpload = (event) => {
         <label
           for="date-input"
           class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >Select a date</label
+        >Select a date</label
         >
         <input
           id="date-input"
@@ -166,6 +169,7 @@ const handleFileUpload = (event) => {
               class="max-w-full h-auto rounded-lg border"
             />
           </div>
+            <CustomInput v-model="userInput" />
         </div>
       </div>
     </div>
