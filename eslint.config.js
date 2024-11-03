@@ -4,8 +4,8 @@ import js from '@eslint/js';
 // VueファイルのためのESLintプラグインをインポート
 import pluginVue from 'eslint-plugin-vue';
 
-// Prettierとのフォーマットの競合を避けるための設定
-import skipFormatting from '@vue/eslint-config-prettier/skip-formatting';
+// npm install eslint-config-prettier --save-dev
+import prettier from 'eslint-config-prettier';
 
 export default [
   {
@@ -25,8 +25,7 @@ export default [
   // Vueプラグインの推奨ルールを適用（フラット構造で）
   ...pluginVue.configs['flat/recommended'],
 
-  // Prettierのフォーマットルールを無視
-  skipFormatting,
+  prettier, // Prettierの競合を避けるために追加
 
   {
     // ECMAScript 2015（ES6）互換性のためのオプションを設定
@@ -46,7 +45,7 @@ export default [
       // インデントはスペース2つに統一
       indent: ['error', 2],
       // セミコロンを常に使う
-      // semi: ['error', 'always'],
+      semi: ['error', 'always'],
       // 文字列にはシングルクォートを使用
       quotes: ['error', 'single'],
       // 未使用の変数には警告を表示

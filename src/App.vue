@@ -1,24 +1,27 @@
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-const textField = ref('')
-const textArea = ref('')
-const checkBox = ref(false)
-const selectedIds = ref([])
-const selectedOption = ref('')
-const selectedColor = ref('#000000')
+const textField = ref('');
+const textArea = ref('');
+const checkBox = ref(false);
+const selectedIds = ref([]);
+const selectedOption = ref('');
+const selectedColor = ref('#000000');
 // 今日の日付を 'YYYY-MM-DD' の形式にフォーマット
-const formatDate = date => {
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
-  return `${year}-${month}-${day}`
-}
+const formatDate = (date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
 
 // 現在の日付を初期値として設定
-const currentDate = ref(formatDate(new Date()))
-const dropdownValue = ref('') // dropdownの初期値
-const file = ref(null)
+const currentDate = ref(formatDate(new Date()));
+const dropdownValue = ref(''); // dropdownの初期値
+const file = ref(null);
+const handleFileUpload = (event) => {
+  file.value = event.target.files[0] || null;
+};
 </script>
 
 <template>
@@ -127,7 +130,7 @@ const file = ref(null)
           id="file-upload"
           type="file"
           class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-          @change="event => (file.value = event.target.files[0])"
+          @change="handleFileUpload"
         />
         <div>
           <h2 class="text-2xl">Output</h2>
@@ -144,7 +147,7 @@ const file = ref(null)
           </p>
           <p>Selected Date: {{ currentDate }}</p>
           <p>Selected Dropdown: {{ dropdownValue }}</p>
-          <p>Selected File: {{ file }}</p>
+         <p>File: {{ file ? file.name : 'No file selected' }}</p>
         </div>
       </div>
     </div>
