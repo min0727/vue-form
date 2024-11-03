@@ -19,8 +19,17 @@ const formatDate = (date) => {
 const currentDate = ref(formatDate(new Date()));
 const dropdownValue = ref(''); // dropdownの初期値
 const file = ref(null);
+const imageUrl = ref('');
+
 const handleFileUpload = (event) => {
-  file.value = event.target.files[0] || null;
+  const selectedFile = event.target.files[0] || null;
+  file.value = selectedFile;
+
+  if (selectedFile) {
+    imageUrl.value = URL.createObjectURL(selectedFile);
+  } else {
+    imageUrl.value = '';
+  }
 };
 </script>
 
@@ -129,6 +138,7 @@ const handleFileUpload = (event) => {
         <input
           id="file-upload"
           type="file"
+          accept="image/*"
           class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:text-gray-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
           @change="handleFileUpload"
         />
@@ -147,7 +157,15 @@ const handleFileUpload = (event) => {
           </p>
           <p>Selected Date: {{ currentDate }}</p>
           <p>Selected Dropdown: {{ dropdownValue }}</p>
-         <p>File: {{ file ? file.name : 'No file selected' }}</p>
+          <p>File: {{ file ? file.name : 'No file selected' }}</p>
+          <div v-if="imageUrl" class="mt-4">
+            <h3 class="text-lg font-medium mb-2">Image Preview</h3>
+            <img
+              :src="imageUrl"
+              alt="Selected image preview"
+              class="max-w-full h-auto rounded-lg border"
+            />
+          </div>
         </div>
       </div>
     </div>
