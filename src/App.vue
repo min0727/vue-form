@@ -33,7 +33,8 @@ const handleFileUpload = (event) => {
     imageUrl.value = '';
   }
 };
-const userInput = ref('');
+const userName = ref('');
+const userAge = ref(0);
 </script>
 
 <template>
@@ -118,7 +119,7 @@ const userInput = ref('');
         <label
           for="date-input"
           class="block text-sm font-medium text-gray-700 dark:text-gray-300"
-        >Select a date</label
+          >Select a date</label
         >
         <input
           id="date-input"
@@ -169,7 +170,23 @@ const userInput = ref('');
               class="max-w-full h-auto rounded-lg border"
             />
           </div>
-            <CustomInput v-model="userInput" />
+          <label for="user-name">親　名前</label>
+          <input
+            id="user-name"
+            v-model="userName"
+            type="text"
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Enter name"
+          />
+          <label for="user-age">親　年齢</label>
+          <input
+            id="user-age"
+            v-model="userAge"
+            type="number"
+            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Enter age"
+          />
+          <CustomInput v-model.upperCase="userName" v-model:age="userAge"/>
         </div>
       </div>
     </div>
